@@ -5,7 +5,7 @@ _open_bbr() {
 	echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
 	sysctl -p >/dev/null 2>&1
 	echo
-	_green "..由于你的 VPS 内核支持开启 BBR ...已经为你启用 BBR 优化...."
+	_green "..VPS 커널이 BBR 사용을 지원합니다 ... BBR을 실행하였습니다...."
 	echo
 }
 
