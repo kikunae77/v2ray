@@ -58,7 +58,7 @@ if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup &
 
 	. $backup
 
-elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/kikunae77_v2ray_backup.txt && -d /etc/v2ray/kikunae77/v2ray ]]; then
+elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/szkorean_v2ray_backup.txt && -d /etc/v2ray/kikunae77/v2ray ]]; then
 
 	. /etc/v2ray/kikunae77/v2ray/tools/v1xx_to_v3xx.sh
 
