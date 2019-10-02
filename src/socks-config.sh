@@ -1,6 +1,6 @@
 # Socks config
 if [[ $socks ]]; then
-	socks_file="/etc/v2ray/233boy/v2ray/config/server/include/socks.json"
+	socks_file="/etc/v2ray/kikunae77/v2ray/config/server/include/socks.json"
 	socks_file_tmp="/tmp/socks.json.tmp"
 	cp -f $socks_file $socks_file_tmp
 	sed -i "s/6666/$socks_port/; s/233v2.com/$socks_username/; s/233blog.com/$socks_userpass/" $socks_file_tmp
