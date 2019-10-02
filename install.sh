@@ -71,8 +71,8 @@ fi
 uuid=$(cat /proc/sys/kernel/random/uuid)
 old_id="e55c8d17-2cf3-b21a-bcf1-eeacb011ed79"
 v2ray_server_config="/etc/v2ray/config.json"
-v2ray_client_config="/etc/v2ray/233blog_v2ray_config.json"
-backup="/etc/v2ray/233blog_v2ray_backup.conf"
+v2ray_client_config="/etc/v2ray/szkorean_v2ray_config.json"
+backup="/etc/v2ray/szkorean_v2ray_backup.conf"
 _v2ray_sh="/usr/local/sbin/v2ray"
 systemd=true
 # _test=true
@@ -123,7 +123,7 @@ ciphers=(
 )
 
 _load() {
-	local _dir="/etc/v2ray/233boy/v2ray/src/"
+	local _dir="/etc/v2ray/kikunae77/v2ray/src/"
 	. "${_dir}$@"
 }
 _sys_timezone() {
@@ -799,16 +799,16 @@ install_v2ray() {
 			echo
 			exit 1
 		fi
-		mkdir -p /etc/v2ray/233boy/v2ray
-		cp -rf $(pwd)/* /etc/v2ray/233boy/v2ray
+		mkdir -p /etc/v2ray/kikunae77/v2ray
+		cp -rf $(pwd)/* /etc/v2ray/kikunae77/v2ray
 	else
 		pushd /tmp
-		git clone https://github.com/233boy/v2ray -b "$_gitbranch" /etc/v2ray/233boy/v2ray --depth=1
+		git clone https://github.com/kikunae77/v2ray -b "$_gitbranch" /etc/v2ray/kikunae77/v2ray --depth=1
 		popd
 
 	fi
 
-	if [[ ! -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ ! -d /etc/v2ray/kikunae77/v2ray ]]; then
 		echo
 		echo -e "$red gitgub 연결에 문제가 있습니다...$none"
 		echo
@@ -893,8 +893,8 @@ del_port() {
 }
 
 config() {
-	cp -f /etc/v2ray/233boy/v2ray/config/backup.conf $backup
-	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh $_v2ray_sh
+	cp -f /etc/v2ray/kikunae77/v2ray/config/backup.conf $backup
+	cp -f /etc/v2ray/kikunae77/v2ray/v2ray.sh $_v2ray_sh
 	chmod +x $_v2ray_sh
 
 	v2ray_id=$uuid
@@ -997,14 +997,14 @@ show_config_info() {
 }
 
 install() {
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/kikunae77/v2ray ]]; then
 		echo
 		echo " 이미 V2Ray가 설치되어 있습니다. 다시 설치할 필요가 없습니다."
 		echo
 		echo -e " ${cyan}v2ray${none}를 입력하여 $yellow V2Ray${none}를 관리할 수 있습니다."
 		echo
 		exit 1
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/szkorean_v2ray_backup.txt && -d /etc/v2ray/kikunae77/v2ray ]]; then
 		echo
 		echo "  계속 설치하시려면 우선 구버전을 삭제하시기 바랍니다."
 		echo
@@ -1039,7 +1039,7 @@ install() {
 }
 uninstall() {
 
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/kikunae77/v2ray ]]; then
 		. $backup
 		if [[ $mark ]]; then
 			_load uninstall.sh
@@ -1049,7 +1049,7 @@ uninstall() {
 			echo
 		fi
 
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/szkorean_v2ray_backup.txt && -d /etc/v2ray/kikunae77/v2ray ]]; then
 		echo
 		echo -e " ${cyan}v2ray uninstall${none}을 입력하여 $yellow삭제${none}할 수 있습니다."
 		echo
