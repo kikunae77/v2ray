@@ -3,11 +3,11 @@ _get_latest_version() {
 
 	if [[ ! $v2ray_latest_ver ]]; then
 		echo
-		echo -e " $red获取 V2Ray 最新版本失败!!!$none"
+		echo -e " $red V2Ray 최신 버전을 가져오는데 실패했습니다!!!$none"
 		echo
-		echo -e " 请尝试执行如下命令: $green echo 'nameserver 8.8.8.8' >/etc/resolv.conf $none"
+		echo -e " 아래 명령어를 테스트 해보시기 바랍니다. : $green echo 'nameserver 8.8.8.8' >/etc/resolv.conf $none"
 		echo
-		echo " 然后再重新运行脚本...."
+		echo " 그리고 스크립트를 다시 실행해주세요...."
 		echo
 		exit 1
 	fi
@@ -22,7 +22,7 @@ _download_v2ray_file() {
 
 	if ! wget --no-check-certificate -O "$v2ray_tmp_file" $v2ray_download_link; then
 		echo -e "
-        $red 下载 V2Ray 失败啦..可能是你的 VPS 网络太辣鸡了...请重试...$none
+        $red V2Ray 다운로드에 실패했습니다.. VPS의 인터넷 연결 상황이 안 좋은 것 같습니다.... 다시 실행해 주세요...$none
         " && exit 1
 	fi
 
@@ -52,18 +52,18 @@ _update_v2ray_version() {
 	_get_latest_version
 	if [[ $v2ray_ver != $v2ray_latest_ver ]]; then
 		echo
-		echo -e " $green 咦...发现新版本耶....正在拼命更新.......$none"
+		echo -e " $green 새 버전을 발견했습니다.... 업데이트를 진행합니다.......$none"
 		echo
 		_download_v2ray_file
 		do_service restart v2ray
 		echo
-		echo -e " $green 更新成功啦...当前 V2Ray 版本: ${cyan}$v2ray_latest_ver$none"
+		echo -e " $green 업데이트를 성공했습니다.... 현재 V2Ray 버전: ${cyan}$v2ray_latest_ver$none"
 		echo
-		echo -e " $yellow 温馨提示: 为了避免出现莫名其妙的问题...V2Ray 客户端的版本最好和服务器的版本保持一致$none"
+		echo -e " $yellow 참고사항: 문제 발생을 막기위해 V2Ray 클라이언트는 가능하면 서버와 동일한 버전을 사용하시기 바랍니다.$none"
 		echo
 	else
 		echo
-		echo -e " $green 木有发现新版本....$none"
+		echo -e " $green 새 버전이 없습니다....$none"
 		echo
 	fi
 }
