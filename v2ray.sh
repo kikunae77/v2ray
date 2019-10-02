@@ -52,7 +52,7 @@ if [[ $(command -v yum) ]]; then
 
 fi
 
-backup="/etc/v2ray/kikunae77_v2ray_backup.conf"
+backup="/etc/v2ray/szkorean_v2ray_backup.conf"
 
 if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/kikunae77/v2ray ]]; then
 
