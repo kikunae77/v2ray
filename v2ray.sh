@@ -52,22 +52,22 @@ if [[ $(command -v yum) ]]; then
 
 fi
 
-backup="/etc/v2ray/233blog_v2ray_backup.conf"
+backup="/etc/v2ray/kikunae77_v2ray_backup.conf"
 
-if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/kikunae77/v2ray ]]; then
 
 	. $backup
 
-elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/kikunae77_v2ray_backup.txt && -d /etc/v2ray/kikunae77/v2ray ]]; then
 
-	. /etc/v2ray/233boy/v2ray/tools/v1xx_to_v3xx.sh
+	. /etc/v2ray/kikunae77/v2ray/tools/v1xx_to_v3xx.sh
 
 else
 	echo -e " ${red}에러가 발생했습니다...V2Ray${none}를 다시 설치해 주세요${yellow}~(^_^) ${none}" && exit 1
 fi
 
 if [[ $mark != "v3" ]]; then
-	. /etc/v2ray/233boy/v2ray/tools/v3.sh
+	. /etc/v2ray/kikunae77/v2ray/tools/v3.sh
 fi
 if [[ $v2ray_transport -ge 18 ]]; then
 	dynamicPort=true
@@ -80,12 +80,12 @@ fi
 uuid=$(cat /proc/sys/kernel/random/uuid)
 old_id="e55c8d17-2cf3-b21a-bcf1-eeacb011ed79"
 v2ray_server_config="/etc/v2ray/config.json"
-v2ray_client_config="/etc/v2ray/233blog_v2ray_config.json"
+v2ray_client_config="/etc/v2ray/kikunae77_v2ray_config.json"
 v2ray_pid=$(pgrep -f /usr/bin/v2ray/v2ray)
 caddy_pid=$(pgrep -f /usr/local/bin/caddy)
 _v2ray_sh="/usr/local/sbin/v2ray"
 v2ray_ver="$(/usr/bin/v2ray/v2ray -version | head -n 1 | cut -d " " -f2)"
-. /etc/v2ray/233boy/v2ray/src/init.sh
+. /etc/v2ray/kikunae77/v2ray/src/init.sh
 systemd=true
 # _test=true
 
@@ -2445,9 +2445,9 @@ update_v2ray() {
 }
 update_v2ray.sh() {
 	if [[ $_test ]]; then
-		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/233boy/v2ray/test/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
+		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/kikunae77/v2ray/test/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
 	else
-		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/233boy/v2ray/master/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
+		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/kikunae77/v2ray/master/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
 	fi
 
 	if [[ ! $latest_version ]]; then
@@ -2469,9 +2469,9 @@ update_v2ray.sh() {
 		echo
 		echo -e " $green 새 버전이 있습니다...  업데이트 하겠습니다.......$none"
 		echo
-		cd /etc/v2ray/233boy/v2ray
+		cd /etc/v2ray/kikunae77/v2ray
 		git pull
-		cp -f /etc/v2ray/233boy/v2ray/v2ray.sh $_v2ray_sh
+		cp -f /etc/v2ray/kikunae77/v2ray/v2ray.sh $_v2ray_sh
 		chmod +x $_v2ray_sh
 		echo
 		echo -e "$green 갱신 완료... V2Ray 관리 스크립트 버전: ${cyan}$latest_version$none"
