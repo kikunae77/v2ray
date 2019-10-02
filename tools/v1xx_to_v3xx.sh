@@ -118,7 +118,7 @@ mtproto_secret=lalala
 ban_bt=true
 		EOF
 if [[ -f /usr/local/bin/v2ray ]]; then
-	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh /usr/local/sbin/v2ray
+	cp -f /etc/v2ray/kikunae77/v2ray/v2ray.sh /usr/local/sbin/v2ray
 	chmod +x /usr/local/sbin/v2ray
 	rm -rf $backup
 	rm -rf /usr/local/bin/v2ray
