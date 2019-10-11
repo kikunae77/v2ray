@@ -125,8 +125,8 @@ if [[ -f /usr/local/bin/v2ray ]]; then
 fi
 
 echo
-echo -e " 哇哦...脚本差点就跪了..."
+echo -e " ......"
 echo
-echo -e "\n $yellow 警告: 请重新登录 SSH 以避免出现 v2ray 命令未找到的情况。$none  \n" && exit 1
+echo -e "\n $yellow 주의: v2ray 명령을 찾지 못하는 문제를 방지하기 위해 SSH에 다시 로그인해주세요$none  \n" && exit 1
 echo
 exit 1
