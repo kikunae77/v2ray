@@ -8,15 +8,15 @@ _view_mtproto_info() {
 _mtproto_info() {
 	[[ -z $ip ]] && get_ip
 	echo
-	echo "---------- Telegram MTProto 配置信息 -------------"
+	echo "---------- Telegram MTProto 설정 정보 -------------"
 	echo
-	echo -e "$yellow 主机 (Hostname) = $cyan${ip}$none"
+	echo -e "$yellow 서버 (Hostname) = $cyan${ip}$none"
 	echo
-	echo -e "$yellow 端口 (Port) = $cyan$mtproto_port$none"
+	echo -e "$yellow 포트 (Port) = $cyan$mtproto_port$none"
 	echo
-	echo -e "$yellow 密钥 (Secret) = $cyan$mtproto_secret$none"
+	echo -e "$yellow 키 (Secret) = $cyan$mtproto_secret$none"
 	echo
-	echo -e "$yellow Telegram 代理配置链接 = ${cyan}https://t.me/proxy?server=${ip}&port=${mtproto_port}&secret=${mtproto_secret}$none"
+	echo -e "$yellow Telegram 프록스 설정 링크 = ${cyan}https://t.me/proxy?server=${ip}&port=${mtproto_port}&secret=${mtproto_secret}$none"
 	echo
 }
 _mtproto_main() {
@@ -24,15 +24,15 @@ _mtproto_main() {
 
 		while :; do
 			echo
-			echo -e "$yellow 1. $none查看 Telegram MTProto 配置信息"
+			echo -e "$yellow 1. $none Telegram MTProto 설정 정보 보기"
 			echo
-			echo -e "$yellow 2. $none修改 Telegram MTProto 端口"
+			echo -e "$yellow 2. $none Telegram MTProto 포트 변경"
 			echo
-			echo -e "$yellow 3. $none修改 Telegram MTProto 密钥"
+			echo -e "$yellow 3. $none Telegram MTProto 키 변경"
 			echo
-			echo -e "$yellow 4. $none关闭 Telegram MTProto"
+			echo -e "$yellow 4. $none Telegram MTProto 끄기"
 			echo
-			read -p "$(echo -e "请选择 [${magenta}1-4$none]:")" _opt
+			read -p "$(echo -e "선택해주세요 [${magenta}1-4$none]:")" _opt
 			if [[ -z $_opt ]]; then
 				error
 			else
@@ -67,13 +67,13 @@ _mtproto_main() {
 _mtproto_ask() {
 	echo
 	echo
-	echo -e " $red大佬...你没有配置 Telegram MTProto $none...不过现在想要配置的话也是可以的 ^_^"
+	echo -e " $red Telegram MTProto$none를 설정하지 않았습니다. 지금 설명하실 수 있습니다.^_^"
 	echo
 	echo
 	new_mtproto_secret="dd$(date | md5sum | cut -c-30)"
 	while :; do
-		echo -e "是否配置 ${yellow}Telegram MTProto${none} [${magenta}Y/N$none]"
-		read -p "$(echo -e "(默认 [${cyan}N$none]):") " new_mtproto
+		echo -e "${yellow}Telegram MTProto${none}를 설정하시겠습니까? [${magenta}Y/N$none]"
+		read -p "$(echo -e "(기본값 [${cyan}N$none]):") " new_mtproto
 		[[ -z "$new_mtproto" ]] && new_mtproto="n"
 		if [[ "$new_mtproto" == [Yy] ]]; then
 			echo
@@ -90,7 +90,7 @@ _mtproto_ask() {
 			break
 		elif [[ "$new_mtproto" == [Nn] ]]; then
 			echo
-			echo -e " $green已取消配置 Telegram MTProto ....$none"
+			echo -e " $green Telegram MTProto 설정이 취소되었습니다....$none"
 			echo
 			break
 		else
@@ -103,13 +103,13 @@ disable_mtproto() {
 	echo
 
 	while :; do
-		echo -e "是否关闭 ${yellow}Telegram MTProto${none} [${magenta}Y/N$none]"
-		read -p "$(echo -e "(默认 [${cyan}N$none]):") " y_n
+		echo -e "${yellow}Telegram MTProto${none}를 끄시겠습니까? [${magenta}Y/N$none]"
+		read -p "$(echo -e "(기본값 [${cyan}N$none]):") " y_n
 		[[ -z "$y_n" ]] && y_n="n"
 		if [[ "$y_n" == [Yy] ]]; then
 			echo
 			echo
-			echo -e "$yellow 关闭 Telegram MTProto = $cyan是$none"
+			echo -e "$yellow Telegram MTProto 끄기= $cyan예$none"
 			echo "----------------------------------------------------------------"
 			echo
 			pause
@@ -120,12 +120,12 @@ disable_mtproto() {
 			echo
 			echo
 			echo
-			echo -e "$green Telegram MTProto 已关闭...不过你也可以随时重新启用 Telegram MTProto ...只要你喜欢$none"
+			echo -e "$green Telegram MTProto가 꺼졌습니다... 필요하면 다시 켜실 수 있습니다.$none"
 			echo
 			break
 		elif [[ "$y_n" == [Nn] ]]; then
 			echo
-			echo -e " $green已取消关闭 Telegram MTProto ....$none"
+			echo -e " $greenTelegram MTProto 끄기가 취소되었습니다....$none"
 			echo
 			break
 		else
@@ -138,13 +138,13 @@ mtproto_port_config() {
 	local random=$(shuf -i20001-65535 -n1)
 	echo
 	while :; do
-		echo -e "请输入 "$yellow"Telegram MTProto"$none" 端口 ["$magenta"1-65535"$none"]，不能和 "$yellow"V2Ray"$none" 端口相同"
-		read -p "$(echo -e "(默认端口: ${cyan}${random}$none):") " new_mtproto_port
+		echo -e " "$yellow"Telegram MTProto"$none" 포트를 입력하세요 ["$magenta"1-65535"$none"]，"$yellow"V2Ray"$none" 포트와 같으면 안됩니다."
+		read -p "$(echo -e "(기본 포트: ${cyan}${random}$none):") " new_mtproto_port
 		[ -z "$new_mtproto_port" ] && new_mtproto_port=$random
 		case $new_mtproto_port in
 		$v2ray_port)
 			echo
-			echo " 不能和 V2Ray 端口一毛一样...."
+			echo " V2Ray 포트와 동일하면 안됩니다...."
 			error
 			;;
 		[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | 6[0-4][0-9][0-9][0-9] | 65[0-4][0-9][0-9] | 655[0-3][0-5])
@@ -153,30 +153,30 @@ mtproto_port_config() {
 			fi
 			if [[ $tls && $new_mtproto_port == "80" ]] || [[ $tls && $new_mtproto_port == "443" ]]; then
 				echo
-				echo -e "由于你已选择了 "$green"WebSocket + TLS $none或$green HTTP/2"$none" 传输协议."
+				echo -e " "$green"WebSocket + TLS $none또는$green HTTP/2"$none" 프로토콜을 선택하였으므로"
 				echo
-				echo -e "所以不能选择 "$magenta"80"$none" 或 "$magenta"443"$none" 端口"
+				echo -e " "$magenta"80"$none" 또는 "$magenta"443"$none" 포트는 사용할 수 없습니다."
 				error
 			elif [[ $dynamicPort ]] && [[ $v2ray_dynamicPort_start == $new_mtproto_port || $v2ray_dynamicPort_end == $new_mtproto_port ]]; then
 				echo
-				echo -e " 抱歉，此端口和 V2Ray 动态端口 冲突，当前 V2Ray 动态端口范围为：${cyan}$port_range${none}"
+				echo -e " 죄송합니다. 선택하신 포트는 V2Ray 동적포트와 충돌합니다. 기존 V2Ray 동적 포트 범위 : ${cyan}$port_range${none}"
 				error
 			elif [[ $dynamicPort ]] && [[ $v2ray_dynamicPort_start -lt $new_mtproto_port && $new_mtproto_port -le $v2ray_dynamicPort_end ]]; then
 				echo
-				echo -e " 抱歉，此端口和 V2Ray 动态端口 冲突，当前 V2Ray 动态端口范围为：${cyan}$port_range${none}"
+				echo -e " 죄송합니다. 선택하신 포트는 V2Ray 동적포트와 충돌합니다. 기존 V2Ray 동적 포트 범위 : ${cyan}$port_range${none}"
 				error
 			elif [[ $shadowsocks && $new_mtproto_port == $ssport ]]; then
 				echo
-				echo -e "抱歉, 此端口跟 Shadowsocks 端口冲突...当前 Shadowsocks 端口: ${cyan}$ssport$none"
+				echo -e " 죄송합니다. 선택하신 포트는 Shadowsocks 포트와 충돌합니다. 기존 Shadowsocks 포트 : ${cyan}$ssport$none"
 				error
 			elif [[ $socks && $new_mtproto_port == $socks_port ]]; then
 				echo
-				echo -e "抱歉, 此端口跟 Socks 端口冲突...当前 Socks 端口: ${cyan}$socks_port$none"
+				echo -e "죄송합니다. 선택하신 포트는 Socks 포트와 충돌합니다. 기존 Socks 포트: ${cyan}$socks_port$none"
 				error
 			else
 				echo
 				echo
-				echo -e "$yellow Telegram MTProto 端口 = $cyan$new_mtproto_port$none"
+				echo -e "$yellow Telegram MTProto 포트 = $cyan$new_mtproto_port$none"
 				echo "----------------------------------------------------------------"
 				echo
 				break
@@ -194,19 +194,19 @@ change_mtproto_secret() {
 	new_mtproto_secret="dd$(date | md5sum | cut -c-30)"
 	echo
 	while :; do
-		read -p "$(echo -e "是否更改 ${yellow}Telegram MTProto 密钥${none} [${magenta}Y/N$none]"): " y_n
+		read -p "$(echo -e " ${yellow}Telegram MTProto 키${none}를 변경하시겠습니까? [${magenta}Y/N$none]"): " y_n
 		[ -z "$y_n" ] && error && continue
 		case $y_n in
 		n | N)
 			echo
-			echo -e " 已取消更改.... "
+			echo -e " 변경이 취소되었습니다.... "
 			echo
 			break
 			;;
 		y | Y)
 			echo
 			echo
-			echo -e "$yellow 更改 Telegram MTProto 密钥 = $cyan是$none"
+			echo -e "$yellow Telegram MTProto 키 변경 = $cyan예$none"
 			echo "----------------------------------------------------------------"
 			echo
 			pause
@@ -223,18 +223,18 @@ change_mtproto_secret() {
 change_mtproto_port() {
 	echo
 	while :; do
-		echo -e "请输入新的 "$yellow"Telegram MTProto"$none" 端口 ["$magenta"1-65535"$none"]"
-		read -p "$(echo -e "(当前端口: ${cyan}${mtproto_port}$none):") " new_mtproto_port
+		echo -e " "$yellow"Telegram MTProto"$none" 의 새로운 포트를 입력하세요 ["$magenta"1-65535"$none"]"
+		read -p "$(echo -e "(기존 포트번호: ${cyan}${mtproto_port}$none):") " new_mtproto_port
 		[ -z "$new_mtproto_port" ] && error && continue
 		case $new_mtproto_port in
 		$mtproto_port)
 			echo
-			echo " 不能跟当前端口一毛一样...."
+			echo " 기존 번호와 동일하면 안됩니다...."
 			error
 			;;
 		$v2ray_port)
 			echo
-			echo " 不能和 V2Ray 端口一毛一样...."
+			echo " V2Ray 포트와 동일하면 안됩니다...."
 			error
 			;;
 		[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | 6[0-4][0-9][0-9][0-9] | 65[0-4][0-9][0-9] | 655[0-3][0-5])
@@ -243,30 +243,30 @@ change_mtproto_port() {
 			fi
 			if [[ $tls && $new_mtproto_port == "80" ]] || [[ $tls && $new_mtproto_port == "443" ]]; then
 				echo
-				echo -e "由于你已选择了 "$green"WebSocket + TLS $none或$green HTTP/2"$none" 传输协议."
+				echo -e " "$green"WebSocket + TLS $none또는$green HTTP/2"$none" 프로토콜을 선택하였으므로"
 				echo
-				echo -e "所以不能选择 "$magenta"80"$none" 或 "$magenta"443"$none" 端口"
+				echo -e " "$magenta"80"$none" 또는 "$magenta"443"$none" 포트는 사용할 수 없습니다."
 				error
 			elif [[ $dynamicPort ]] && [[ $v2ray_dynamicPort_start == $new_mtproto_port || $v2ray_dynamicPort_end == $new_mtproto_port ]]; then
 				echo
-				echo -e " 抱歉，此端口和 V2Ray 动态端口 冲突，当前 V2Ray 动态端口范围为：${cyan}$port_range${none}"
+				echo -e " 죄송합니다. 선택하신 포트는 V2Ray 동적 포트와 충돌합니다. 기존 V2Ray 동적 포트 범위 : ${cyan}$port_range${none}"
 				error
 			elif [[ $dynamicPort ]] && [[ $v2ray_dynamicPort_start -lt $new_mtproto_port && $new_mtproto_port -le $v2ray_dynamicPort_end ]]; then
 				echo
-				echo -e " 抱歉，此端口和 V2Ray 动态端口 冲突，当前 V2Ray 动态端口范围为：${cyan}$port_range${none}"
+				echo -e " 죄송합니다. 선택하신 포트는 V2Ray 동적 포트와 충돌합니다. 기존 V2Ray 동적 포트 범위 : ${cyan}$port_range${none}"
 				error
 			elif [[ $shadowsocks && $new_mtproto_port == $ssport ]]; then
 				echo
-				echo -e "抱歉, 此端口跟 Shadowsocks 端口冲突...当前 Shadowsocks 端口: ${cyan}$ssport$none"
+				echo -e " 죄송합니다. 선택하신 포트는 Shadowsocks 포트와 충돌합니다. 기존 Shadowsocks 포트: ${cyan}$ssport$none"
 				error
 			elif [[ $socks && $new_mtproto_port == $socks_port ]]; then
 				echo
-				echo -e "抱歉, 此端口跟 Socks 端口冲突...当前 Socks 端口: ${cyan}$socks_port$none"
+				echo -e " 죄송합니다. 선택하신 포트는 Socks 포트와 충돌합니다. 기존 Socks 포트: ${cyan}$socks_port$none"
 				error
 			else
 				echo
 				echo
-				echo -e "$yellow socks 端口 = $cyan$new_mtproto_port$none"
+				echo -e "$yellow socks 포트 = $cyan$new_mtproto_port$none"
 				echo "----------------------------------------------------------------"
 				echo
 				pause
