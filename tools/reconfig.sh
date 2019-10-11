@@ -68,8 +68,8 @@ proxy_site=$proxy_site
 rm -rf $backup
 mv -f /etc/v2ray/233blog_v2ray_backup.conf.tmp /etc/v2ray/233blog_v2ray_backup.conf
 echo
-echo -e " .... 哇哦.. .."
+echo -e " ........"
 echo
-echo -e " 请使用命令$yellow v2ray reload $none重新加载配置...以避免发生莫名其妙的问题"
+echo -e "혹시 모를 문제 발생을 피하기 위해 $yellow v2ray reload $none명령어로 설정을 적용하세요.."
 echo
 exit 1
