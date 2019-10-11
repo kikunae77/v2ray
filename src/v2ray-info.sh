@@ -73,64 +73,64 @@ _v2_args() {
 _v2_info() {
 	echo
 	echo
-	echo "---------- V2Ray 配置信息 -------------"
+	echo "---------- V2Ray 설정 정보 -------------"
 	if [[ $v2ray_transport == [45] ]]; then
 		if [[ ! $caddy ]]; then
 			echo
-			echo -e " $red警告！$none$yellow请自行配置 TLS...教程: https://233v2.com/post/3/$none"
+			echo -e " $red주의!$none$yellow TLS 자동설정을 사용하세요... 강좌(중국어): https://233v2.com/post/3/$none"
 		fi
 		echo
-		echo -e "$yellow 地址 (Address) = $cyan${domain}$none"
+		echo -e "$yellow 주소 (Address) = $cyan${domain}$none"
 		echo
-		echo -e "$yellow 端口 (Port) = ${cyan}443${none}"
+		echo -e "$yellow 포트 (Port) = ${cyan}443${none}"
 		echo
-		echo -e "$yellow 用户ID (User ID / UUID) = $cyan${v2ray_id}$none"
+		echo -e "$yellow 사용자ID (User ID / UUID) = $cyan${v2ray_id}$none"
 		echo
-		echo -e "$yellow 额外ID (Alter Id) = ${cyan}${alterId}${none}"
+		echo -e "$yellow Alter ID (Alter Id) = ${cyan}${alterId}${none}"
 		echo
-		echo -e "$yellow 传输协议 (Network) = ${cyan}${net}$none"
+		echo -e "$yellow 프로토콜 (Network) = ${cyan}${net}$none"
 		echo
-		echo -e "$yellow 伪装类型 (header type) = ${cyan}${header}$none"
+		echo -e "$yellow 위장 종류 (header type) = ${cyan}${header}$none"
 		echo
-		echo -e "$yellow 伪装域名 (host) = ${cyan}${domain}$none"
+		echo -e "$yellow 위장 도메인 (host) = ${cyan}${domain}$none"
 		echo
-		echo -e "$yellow 路径 (path) = ${cyan}${_path}$none"
+		echo -e "$yellow 경로 (path) = ${cyan}${_path}$none"
 		echo
-		echo -e "$yellow TLS (Enable TLS) = ${cyan}打开$none"
+		echo -e "$yellow TLS (Enable TLS) = ${cyan}켬$none"
 		echo
 		if [[ $ban_ad ]]; then
-			echo " 备注: 广告拦截已开启.."
+			echo " 참고: 광고차단기능 사용 중.."
 			echo
 		fi
 	else
 		echo
-		echo -e "$yellow 地址 (Address) = $cyan${ip}$none"
+		echo -e "$yellow 주소 (Address) = $cyan${ip}$none"
 		echo
-		echo -e "$yellow 端口 (Port) = $cyan$v2ray_port$none"
+		echo -e "$yellow 포트 (Port) = $cyan$v2ray_port$none"
 		echo
-		echo -e "$yellow 用户ID (User ID / UUID) = $cyan${v2ray_id}$none"
+		echo -e "$yellow 사용자ID (User ID / UUID) = $cyan${v2ray_id}$none"
 		echo
-		echo -e "$yellow 额外ID (Alter Id) = ${cyan}${alterId}${none}"
+		echo -e "$yellow Alter ID (Alter Id) = ${cyan}${alterId}${none}"
 		echo
-		echo -e "$yellow 传输协议 (Network) = ${cyan}${net}$none"
+		echo -e "$yellow 프로토콜 (Network) = ${cyan}${net}$none"
 		echo
-		echo -e "$yellow 伪装类型 (header type) = ${cyan}${header}$none"
+		echo -e "$yellow 위장 종류 (header type) = ${cyan}${header}$none"
 		echo
 	fi
 	if [[ $v2ray_transport -ge 18 ]] && [[ $ban_ad ]]; then
-		echo " 备注: 动态端口已启用...广告拦截已开启..."
+		echo " 참고: 동적포트 사용 중......광고차단기능 사용 중..."
 		echo
 	elif [[ $v2ray_transport -ge 18 ]]; then
-		echo " 备注: 动态端口已启用..."
+		echo " 참고: 동적포트 사용 중..."
 		echo
 	elif [[ $ban_ad ]]; then
-		echo " 备注: 广告拦截已开启.."
+		echo " 참고: 광고차단기능 사용 중.."
 		echo
 	fi
 	echo "---------- END -------------"
 	echo
-	echo "V2Ray 客户端使用教程: https://233v2.com/post/4/"
+	echo "V2Ray 클라이언트 사용 강좌(중국어): https://233v2.com/post/4/"
 	echo
-	echo -e "提示: 输入$cyan v2ray url $none可生成 vmess URL 链接 / 输入$cyan v2ray qr $none可生成二维码链接"
+	echo -e "참고: $cyan v2ray url $none명령어로 vmess URL 링크 / $cyan v2ray qr $none 명령어로 QR코드 링크를 생성할 수 있습니다."
 	echo
 }
